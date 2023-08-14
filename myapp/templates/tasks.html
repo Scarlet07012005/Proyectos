@@ -1,0 +1,16 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+
+<h1>{{ title }}</h1>
+{% for task in tasks %}
+
+<article>
+    <h2>Task: {{ task.title }} {% if task.done == False %} 🕑 {% else %} 🗹 {% endif %}</h2>
+    <h3>Project: {{ task.project.name }}</h3>
+    <p>Description: {{ task.description }}</p>
+</article>
+
+{% endfor %}
+
+{% endblock %}
