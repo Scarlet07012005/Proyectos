@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, JsonResponse
 from .models import Project, Task
-from .forms import CreateNewTask
+from .forms import CreateNewTask, CreateNewProject
 
 def index(request):
     title = "Django Project!!"
@@ -27,7 +27,7 @@ def number(request, numero):
 def projects(request):
     title = "Projects! :3"
     projects = list(Project.objects.values())
-    return render(request, 'projects.html', {
+    return render(request, 'projects/projects.html', {
         'title' : title,
         'projects' : projects
     })
@@ -36,19 +36,38 @@ def projects(request):
 def tasks(request):
     title = "Tasks! :3"
     tasks = Task.objects.all()
-    return render(request, 'tasks.html', {
+    return render(request, 'tasks/tasks.html', {
         'title' : title,
         'tasks' : tasks
     })
 
+def tasks_project( request, project_id):
+    project = Project.objects.get(id=project_id)
+    tasks = Task.objects.all().filter(project_id=project_id)
+    return render( request, 'projects/tasks.html', {
+        'project':project.name,
+        'tasks': tasks,
+    })
+
 def create_task(request):
     if request.method == 'GET':
-        return render(request, 'create_task.html', {
+        return render(request, 'tasks/create_task.html', {
             'form': CreateNewTask()
     })
     else:
         title = request.POST['title']
         description = request.POST['description']
-        project_id = 1
+        project_id = request.POST['project_id']
         Task.objects.create(title=title, description=description, project_id=project_id)
         return redirect('/tasks')
+    
+def create_projects(request):
+    if request.method == 'GET':
+        return render(request, 'projects/create_projects.html', {
+            'form': CreateNewProject
+    })
+    else:
+        name = request.POST['name']
+        Project.objects.create(name=name)
+        return redirect('/projects')
+    

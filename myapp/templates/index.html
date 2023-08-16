@@ -2,7 +2,12 @@
 
 {% block content %}
 
+{% load static %}
+
 <h1>{{ title }}</h1>
+<div class="img">
+    <img src="{% static 'images/logoSena.png' %}" alt="Logo">
+</div>
 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam delectus cupiditate itaque corrupti ullam non, aperiam suscipit cum iure magni reiciendis explicabo tenetur totam odio voluptatem, recusandae facere harum molestias.</p>
 
 {% endblock %}
