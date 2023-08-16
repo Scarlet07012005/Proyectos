@@ -23,19 +23,19 @@ nav {
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
-ul {
+.navegacion {
     list-style-type: none;
     margin: 0;
     padding: .3rem;
     overflow: hidden;
 }
 
-li {
+.nav1 {
     float: left;
     margin-left: 1rem;
 }
 
-li > a {
+.nav1 > a {
     display: block;
     color: #fff;
     text-decoration: none;
@@ -44,7 +44,7 @@ li > a {
     font-size: large;
 }
 
-li > a:hover {
+.nav1 > a:hover {
     color: #111;
 }
 
